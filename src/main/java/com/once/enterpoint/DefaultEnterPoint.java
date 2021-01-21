@@ -13,7 +13,7 @@ public class DefaultEnterPoint extends AbstractEnterPoint {
     @Override
     public Object enter(Object o) {
         System.out.println("入口点进入start");
-        Object rs = this.handler.handler(o);
+        Object rs = doEnter(o);
         System.out.println("入口点进入end");
         return rs;
     }
