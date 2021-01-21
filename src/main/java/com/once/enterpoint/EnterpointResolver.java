@@ -1,5 +1,7 @@
 package com.once.enterpoint;
 
+import com.once.config.Config;
+
 /***
  * TODO
  * @author once
@@ -8,5 +10,5 @@ package com.once.enterpoint;
  */
 public interface EnterpointResolver {
 
-    Enterpoint resolve(EnterPointConfig resource);
+    Enterpoint resolve(Config resource);
 }

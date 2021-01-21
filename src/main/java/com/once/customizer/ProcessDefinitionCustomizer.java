@@ -4,7 +4,6 @@ import cn.hutool.core.lang.Assert;
 import com.once.definition.DefaultProcessDefinition;
 import com.once.definition.ProcessDefinition;
 import com.once.enterpoint.Enterpoint;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,29 +15,28 @@ import java.util.function.Supplier;
  * @date 2021/1/20 21:28
  *
  */
-public class ProcessDefintionCustomizer {
+public class ProcessDefinitionCustomizer {
 
     private List<Enterpoint> enterPoints = new ArrayList<>();
 
     private ProcessDefinition processDefinition = new DefaultProcessDefinition();
 
-    private static ProcessDefintionCustomizer builder() {
-        return new ProcessDefintionCustomizer();
+    public static ProcessDefinitionCustomizer builder() {
+        return new ProcessDefinitionCustomizer();
     }
 
-    ProcessDefintionCustomizer joinPoint(Supplier<Enterpoint> supplier) {
+    public ProcessDefinitionCustomizer joinPoint(Supplier<Enterpoint> supplier) {
         enterPoints.add(supplier.get());
         return this;
     }
 
-    ProcessDefintionCustomizer definition(ProcessDefinition definition) {
+    public ProcessDefinitionCustomizer definition(ProcessDefinition definition) {
         this.processDefinition = definition;
         return this;
     }
 
    public ProcessDefinition build() {
         Assert.notEmpty(enterPoints);
-        Assert.isNull(processDefinition);
         enterPoints.forEach(processDefinition::joinPoint);
         return processDefinition;
     }

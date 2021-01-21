@@ -1,7 +1,6 @@
 package com.once.definition;
 
 import com.once.config.Config;
-import com.once.config.ProcessDefinitionConfig;
 import com.once.enterpoint.Enterpoint;
 
 import java.util.LinkedList;
@@ -22,12 +21,12 @@ public class AbstractProcessDefinition implements ProcessDefinition {
     }
 
     @Override
-    public Enterpoint resolver(ProcessDefinitionConfig config) {
+    public Enterpoint resolver(Config config) {
         return enterpoints.stream().filter(e -> e.support(config)).findFirst().get();
     }
 
     @Override
-    public boolean support(Config config) {
-        return false;
+     public boolean support(Config config) {
+        return true;
     }
 }

@@ -2,7 +2,6 @@ package com.once.definition;
 
 import com.once.config.Config;
 import com.once.config.ConfigSupport;
-import com.once.config.ProcessDefinitionConfig;
 import com.once.enterpoint.Enterpoint;
 
 /***
@@ -15,5 +14,5 @@ public interface ProcessDefinition extends ConfigSupport {
 
     void joinPoint(Enterpoint enterpoint);
 
-    Enterpoint resolver(ProcessDefinitionConfig config);
+    Enterpoint resolver(Config config);
 }

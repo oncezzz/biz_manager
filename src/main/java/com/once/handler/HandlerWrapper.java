@@ -6,22 +6,10 @@ package com.once.handler;
  * @date 2021/1/20 20:55
  *
  */
-public class HandlerWrapper implements Handler {
+public class HandlerWrapper{
 
-    private Handler handler;
-
-    public HandlerWrapper(Handler handler) {
-        this.handler = handler;
+    public static Handler wrap(Handler handler,InvocationHandler proxy) {
+        proxy.setTarget(handler);
+        return proxy;
     }
-
-    public HandlerWrapper wrap(Handler handler) {
-        this.handler = handler;
-        return this;
-    }
-
-    @Override
-    public Object handler(Object obj) {
-        return handler.handler(obj);
-    }
-
 }

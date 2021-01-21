@@ -1,7 +1,6 @@
 package com.once.enterpoint;
 
 import com.once.config.Config;
-import com.once.handler.Handler;
 
 /***
  * TODO
@@ -13,16 +12,14 @@ public class DefaultEnterPoint extends AbstractEnterPoint {
 
     @Override
     public Object enter(Object o) {
-        return null;
-    }
-
-    @Override
-    public void handler(Handler handler) {
-
+        System.out.println("入口点进入start");
+        Object rs = this.handler.handler(o);
+        System.out.println("入口点进入end");
+        return rs;
     }
 
     @Override
     public boolean support(Config config) {
-        return false;
+        return true;
     }
 }

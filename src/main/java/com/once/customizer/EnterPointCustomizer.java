@@ -5,8 +5,7 @@ import com.once.enterpoint.DefaultEnterPoint;
 import com.once.enterpoint.Enterpoint;
 import com.once.handler.Handler;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Stack;
 
 /***
  * 入口点定义器
@@ -16,27 +15,26 @@ import java.util.List;
  */
 public class EnterPointCustomizer {
 
-    private Enterpoint enterpoint = new DefaultEnterPoint(null) ;
+    private Enterpoint enterpoint = new DefaultEnterPoint() ;
 
-    private List<Handler> handlers = new ArrayList<>();
+    private Stack<Handler> handlers = new Stack<>();
 
     public static EnterPointCustomizer builder() {
         return new EnterPointCustomizer();
     }
 
-    EnterPointCustomizer addHandler(Handler handler) {
-        handlers.add(handler);
+    public EnterPointCustomizer addHandler(Handler handler) {
+        handlers.push(handler);
         return this;
     }
 
-    EnterPointCustomizer enterPoint(Enterpoint enterpoint) {
+    public EnterPointCustomizer enterPoint(Enterpoint enterpoint) {
         this.enterpoint = enterpoint;
         return this;
     }
 
-    Enterpoint build() {
+    public Enterpoint build() {
         Assert.notEmpty(handlers);
-        Assert.isNull(enterpoint);
         handlers.forEach(enterpoint::handler);
         return enterpoint;
     }
